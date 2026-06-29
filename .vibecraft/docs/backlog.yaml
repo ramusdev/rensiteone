@@ -1,0 +1,704 @@
+phases:
+  - id: mvp
+    name: MVP
+    description: Минимально жизнеспособный продукт
+    order: 1
+tasks:
+  - id: task-001
+    phase: mvp
+    title: Визуальная заглушка главной страницы
+    description: >-
+      Создать главную страницу приложения со статическими данными-заглушками.
+
+      Цель: дать пользователю первый визуальный результат как можно быстрее.
+
+      Реализовать только то, что пользователь увидит сразу при открытии
+      приложения. Остальные секции реализовывать не нужно.
+    priority: high
+    acceptance_criteria:
+      - Главная страница отображается без ошибок
+      - Данные отображаются из статических заглушек
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Создана главная страница VPN-лендинга с отображением статических
+      данных из lib/data.ts: название сервиса (VpnSecure), теглайн, описание и
+      три статистических показателя (страны, серверы, пользователи). Основная
+      реализация: app/page.tsx — страница с иконкой, названием и статами;
+      lib/data.ts — статические данные-заглушки; app/layout.tsx — обновлён
+      appName."
+  - id: task-002
+    phase: mvp
+    title: Hero-секция и блоки возможностей
+    description:
+      Реализовать hero-секцию с заголовком, подзаголовком и CTA-кнопкой,
+      а также блоки с ключевыми возможностями VPN (шифрование, отсутствие логов,
+      скорость, приватность, простота) с иконками и описаниями в стиле
+      glassmorphism.
+    priority: high
+    acceptance_criteria:
+      - Hero-секция с заголовком, подзаголовком и CTA отображается при загрузке
+      - Блоки с 3–5 возможностями отображаются с иконками и описаниями
+      - Все элементы выполнены в стиле glassmorphism (тёмная тема, размытые
+        фоны, стеклянные карточки)
+    depends_on:
+      - task-001
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Реализована hero-секция с заголовком (теглайн из data.ts),
+      подзаголовком и двумя CTA-кнопками («Начать бесплатно», «Подробнее») в
+      стиле glassmorphism. Добавлены 5 карточек возможностей (шифрование,
+      скорость, без логов, глобальный доступ, все платформы) с иконками
+      lucide-react и glassmorphism-стилями (backdrop-blur, border-white/10,
+      bg-white/5). Основная реализация: components/hero-section.tsx,
+      components/feature-cards.tsx, app/page.tsx. В layout.tsx добавлен класс
+      dark для тёмной темы."
+  - id: task-003
+    phase: mvp
+    title: Секция социального доказательства
+    description:
+      Реализовать секцию с рейтингом (4.8/5), количеством пользователей
+      (1M+) и загрузок, 3–4 карточками отзывов клиентов и логотипами
+      изданий/наград в стиле glassmorphism.
+    priority: high
+    acceptance_criteria:
+      - Отображается рейтинг 4.8/5
+      - Отображается количество пользователей 1M+ и загрузок
+      - Отображаются 3–4 карточки с отзывами
+      - Присутствуют логотипы изданий или наград
+      - Стиль glassmorphism
+    depends_on:
+      - task-002
+    related_feature: Социальное доказательство и доверие
+    status: completed
+    summary: "Реализована секция социального доказательства с рейтингом 4.8/5
+      (звёзды + средняя оценка), статистикой пользователей (1M+) и загрузок
+      (3.2M+), 4 карточками отзывов клиентов и логотипами изданий (TechCrunch,
+      Wired, Forbes, The Verge, CNET). Все элементы выполнены в стиле
+      glassmorphism. Основная реализация: components/social-proof.tsx,
+      lib/data.ts (типы Review, Publication, SocialProof + данные), app/page.tsx
+      (подключение компонента)."
+  - id: task-004
+    phase: mvp
+    title: Секция тарифов и подписки
+    description:
+      Реализовать секцию с 3 карточками тарифов (1 месяц, 6 месяцев, 12
+      месяцев) с ценами и списком возможностей. Рекомендуемый план визуально
+      выделен. Кнопка выбора тарифа. Рядом отображается информация о 30-дневной
+      гарантии возврата средств.
+    priority: high
+    acceptance_criteria:
+      - Отображаются 3 тарифных плана в виде карточек
+      - У каждого плана указана цена и список возможностей
+      - Рекомендуемый план визуально выделен
+      - Кнопка выбора тарифа работает
+      - Отображается информация о 30-дневной гарантии возврата
+    depends_on:
+      - task-003
+    related_feature: Тарифы и подписка
+    status: completed
+    summary: "Реализована секция тарифов с 3 карточками (1 месяц, 6 месяцев, 12
+      месяцев), ценами со скидками и списком возможностей. Рекомендуемый план (6
+      месяцев) визуально выделен масштабом, рамкой primary и бейджем
+      «Рекомендуем». Кнопка «Выбрать тариф» вызывает toast через sonner. Снизу
+      отображена информация о 30-дневной гарантии возврата с иконкой
+      ShieldCheck. Все элементы выполнены в стиле glassmorphism. Основная
+      реализация: components/pricing-section.tsx, lib/data.ts (типы PricingPlan
+      и данные pricingPlans), app/page.tsx (подключение компонента)."
+  - id: task-005
+    phase: mvp
+    title: Секция скачивания приложения
+    description: Реализовать секцию с кнопками/иконками для скачивания на iOS,
+      Android, Windows, macOS. Адаптировать под мобильные устройства.
+    priority: medium
+    acceptance_criteria:
+      - Отображаются иконки/кнопки для каждой платформы
+      - Кнопки содержат название платформы
+      - Секция адаптирована под мобильные устройства
+    depends_on:
+      - task-004
+    related_feature: Скачать приложение
+    status: completed
+    summary: "Реализована секция скачивания приложения с 4 карточками для iOS,
+      Android, Windows и macOS в стиле glassmorphism. Каждая карточка содержит
+      иконку (lucide-react), название платформы, описание и кнопку «Скачать».
+      Адаптивная сетка: 1 колонка на мобильных, 2 на планшетах, 4 на десктопе.
+      Основная реализация: components/download-section.tsx, lib/data.ts (тип
+      DownloadPlatform + данные downloadPlatforms), app/page.tsx (подключение
+      компонента)."
+  - id: task-006
+    phase: mvp
+    title: Секция поддержки пользователей
+    description: "Реализовать секцию с 3 каналами поддержки: 24/7 чат, email
+      поддержка, база знаний. Каждый с иконкой и описанием в стиле
+      glassmorphism."
+    priority: medium
+    acceptance_criteria:
+      - Отображаются 3 канала поддержки с иконками
+      - У каждого канала указано описание
+      - Стиль glassmorphism
+    depends_on:
+      - task-005
+    related_feature: Поддержка пользователей
+    status: completed
+    summary:
+      "Реализована секция поддержки пользователей с 3 каналами: «Чат 24/7»
+      (MessageCircle), «Email поддержка» (Mail), «База знаний» (BookOpen).
+      Каждый канал отображается в glassmorphism-карточке с иконкой, заголовком,
+      описанием и кнопкой действия. Основная реализация:
+      components/support-section.tsx, lib/data.ts (тип SupportChannel + данные
+      supportChannels), app/page.tsx (подключение компонента)."
+  - id: task-007
+    phase: mvp
+    title: Блок часто задаваемых вопросов (FAQ)
+    description: "Реализовать блок FAQ с аккордеоном из 5 вопросов: замедление
+      интернета, законность VPN, поддерживаемые устройства, количество устройств
+      на подписке, возврат средств."
+    priority: medium
+    acceptance_criteria:
+      - Отображается список из 5 вопросов
+      - При клике на вопрос открывается ответ (аккордеон)
+      - "Вопросы охватывают: скорость, законность, устройства, мультиподписка,
+        возврат средств"
+    depends_on:
+      - task-006
+    related_feature: Часто задаваемые вопросы
+    status: completed
+    summary:
+      "Реализован блок FAQ с аккордеоном на 5 вопросов (скорость, законность,
+      устройства, мультиподписка, возврат средств). При клике на вопрос
+      открывается/закрывается ответ с анимацией. Стиль — glassmorphism,
+      соответствует остальным секциям. Основная реализация:
+      components/faq-section.tsx (компонент аккордеона), lib/data.ts (тип
+      FaqItem + данные faqItems), app/page.tsx (подключение компонента)."
+  - id: task-008
+    phase: mvp
+    title: Секция карты серверов
+    description: Реализовать секцию с информацией о количестве стран и серверов,
+      визуальным отображением (список стран или стилизованная карта).
+    priority: medium
+    acceptance_criteria:
+      - Отображается количество стран и серверов
+      - Визуальный элемент (список стран или стилизованное изображение карты)
+      - Информация выглядит убедительно и современно
+    depends_on:
+      - task-007
+    related_feature: Карта серверов
+    status: completed
+    summary:
+      "Реализована секция «Карта серверов» с отображением количества стран
+      (97+), серверов (1 200+) и городов (45+) в трёх стеклянных
+      карточках-статах. Добавлен визуальный элемент — декоративная «сетка узлов»
+      (map-decoration) с подписью о глобальном присутствии. Ниже расположены
+      карточки 6 регионов (Европа, Северная Америка, Южная Америка, Азия,
+      Океания, Африка) со списком стран с флагами, городами и количеством
+      серверов. Стиль — glassmorphism, соответствует остальным секциям. Основная
+      реализация: components/servers-section.tsx, lib/data.ts (типы
+      ServerCountry, ServerRegion, ServerStats + данные serverStats,
+      serverRegions), app/page.tsx (подключение компонента)."
+  - id: task-009
+    phase: mvp
+    title: Удаление секции карты серверов
+    description: "Удалить секцию «Карта серверов» со страницы: убрать компонент
+      servers-section.tsx из app/page.tsx, удалить связанные данные из
+      lib/data.ts (ServerCountry, ServerRegion, ServerStats и соответствующие
+      данные)."
+    priority: high
+    acceptance_criteria:
+      - Секция с картой серверов больше не отображается на странице
+      - Страница загружается без ошибок
+      - Остальные секции не затронуты
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Удалена секция «Карта серверов»: убран импорт и использование
+      ServersSection из app/page.tsx, удалены типы и данные (ServerCountry,
+      ServerRegion, ServerStats, serverStats, serverRegions) из lib/data.ts,
+      удалён файл компонента components/servers-section.tsx. Остальные секции не
+      затронуты. typecheck, lint, build проходят успешно."
+  - id: task-010
+    phase: mvp
+    title: Секция скачивания только для Android
+    description:
+      "Изменить секцию скачивания приложения: оставить только карточку
+      для Android, убрать iOS, Windows, macOS. Обновить данные в lib/data.ts и
+      компонент download-section.tsx."
+    priority: high
+    acceptance_criteria:
+      - Отображается только одна карточка для Android с иконкой и названием
+      - Карточки iOS, Windows, macOS больше не отображаются
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Скачать приложение
+    status: completed
+    summary: Из downloadPlatforms в lib/data.ts удалены iOS, Windows, macOS —
+      оставлена только Android-запись с иконкой TabletSmartphone. Удалены
+      неиспользуемые импорты Monitor, Laptop. В download-section.tsx сетка
+      заменена на max-w-sm с центрированием единственной карточки. typecheck,
+      lint, build проходят успешно.
+  - id: task-011
+    phase: mvp
+    title: Замена названия на Ren VPN
+    description:
+      "Заменить все упоминания старого названия VPN-сервиса на Ren VPN во
+      всех компонентах и данных: app/layout.tsx (appName), lib/data.ts (название
+      сервиса, теглайн, описания), hero-секция, заголовки секций, карточки
+      тарифов, отзывы и т.д."
+    priority: high
+    acceptance_criteria:
+      - Название Ren VPN отображается в заголовке страницы и hero-секции
+      - Все упоминания старого названия заменены на Ren VPN
+      - Текст на странице выглядит целостно и согласованно
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Все упоминания старого названия VpnSecure заменены на Ren VPN в:
+      app/layout.tsx (appName), lib/data.ts (название сервиса, отзыв, FAQ),
+      components/faq-section.tsx (подзаголовок), components/download-section.tsx
+      (тост). Typecheck, lint, build проходят успешно."
+  - id: task-012
+    phase: mvp
+    title: Убрать упоминания военного уровня, обхода блокировок и цензуры
+    description: Найти и заменить все упоминания «военного уровня», «обход
+      блокировок» и «цензура» в текстах на лендинге. Заменить на более
+      нейтральные формулировки про безопасность, приватность и свободный доступ.
+    priority: high
+    acceptance_criteria:
+      - Фразы «военного уровня», «обход блокировок», «цензура» отсутствуют на
+        странице
+      - Тексты остаются осмысленными и релевантными VPN
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      "Из lib/data.ts удалены 4 упоминания: «шифрование военного уровня» →
+      «надёжное шифрование», «стандарт шифрования военного уровня» →
+      «современный стандарт шифрования», «обходите блокировки» → «свободный
+      доступ к контенту», «обхожу блокировки» → «всё открывается». Typecheck,
+      lint, build проходят успешно."
+  - id: task-013
+    phase: mvp
+    title: Бирюзовая цветовая схема
+    description: Изменить цветовую схему лендинга на бирюзовые тона (teal/cyan).
+      Обновить CSS-переменные в app/globals.css, цвета кнопок, акцентные
+      элементы, рамки, градиенты во всех компонентах.
+    priority: high
+    acceptance_criteria:
+      - Акцентный цвет на странице — бирюзовый (teal/cyan)
+      - Кнопки CTA и акцентные элементы окрашены в бирюзовый
+      - Страница загружается без ошибок
+      - Стиль glassmorphism сохранён
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Все CSS-переменные в app/globals.css изменены с hue 264/270
+      (сине-фиолетовый) на 190 (бирюзовый/teal): primary, secondary, accent,
+      border, ring, chart, sidebar и их foreground-пары. Обновлены градиенты
+      (gradient-hero, gradient-hero-light, gradient-hero-vibrant) и тень
+      card-hover. Во всех компонентах заменены жёстко заданные цвета
+      (purple-500, emerald-400, blue-500, emerald-500, #3b82f6) на cyan/teal
+      эквиваленты. Glassmorphism сохранён. typecheck, lint, build проходят
+      успешно."
+  - id: task-014
+    phase: mvp
+    title: Одна CTA-кнопка в hero-секции
+    description:
+      Убрать вторую кнопку «Подробнее» из hero-секции, оставить только
+      основную CTA-кнопку «Начать бесплатно».
+    priority: high
+    acceptance_criteria:
+      - В hero-секции отображается только одна кнопка «Начать бесплатно»
+      - Кнопка «Подробнее» отсутствует
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: Удалена вторая кнопка «Подробнее» из hero-секции. Оставлена только
+      основная CTA-кнопка «Начать бесплатно» с иконкой ArrowRight. Изменения
+      внесены в components/hero-section.tsx. typecheck, lint и build пройдены
+      успешно.
+  - id: task-015
+    phase: mvp
+    title: Кнопка «Скачать с Google Play» в hero-секции
+    description: Заменить текст кнопки в hero-секции с «Начать бесплатно» на
+      «Скачать с Google Play» и обновить иконку на соответствующую (логотип
+      Google Play или иконку загрузки).
+    priority: high
+    acceptance_criteria:
+      - В hero-секции отображается кнопка с текстом «Скачать с Google Play»
+      - Иконка кнопки соответствует Google Play
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      Текст кнопки в hero-секции заменён с «Начать бесплатно» на «Скачать с
+      Google Play», иконка ArrowRight заменена на Download (lucide-react) в
+      components/hero-section.tsx. typecheck, lint, build проходят успешно.
+  - id: task-016
+    phase: mvp
+    title: "Два тарифа: 1 руб и 199 руб"
+    description:
+      "Изменить секцию тарифов: оставить только 2 плана — 1 месяц за 1
+      руб и 12 месяцев за 199 руб. Убрать средний план (6 месяцев). Обновить
+      данные в lib/data.ts и компонент pricing-section.tsx."
+    priority: high
+    acceptance_criteria:
+      - "Отображаются 2 тарифных плана: 1 руб/мес и 199 руб/год"
+      - План на 6 месяцев отсутствует
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Тарифы и подписка
+    status: completed
+    summary:
+      Из pricingPlans в lib/data.ts удалён план «6 месяцев»; цена месячного
+      плана изменена с 499 на 1 руб, план «12 месяцев» помечен как recommended.
+      В pricing-section.tsx сетка изменена с lg:grid-cols-3 на lg:grid-cols-2.
+      Typecheck, lint, build проходят успешно.
+  - id: task-017
+    phase: mvp
+    title: В секции поддержки оставить только email
+    description: Убрать из секции поддержки каналы «24/7 чат» и «База знаний»,
+      оставить только «Email поддержка». Обновить данные в lib/data.ts и
+      компонент support-section.tsx.
+    priority: high
+    acceptance_criteria:
+      - Отображается только один канал — email поддержка с иконкой и описанием
+      - Каналы «24/7 чат» и «База знаний» отсутствуют
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Поддержка пользователей
+    status: completed
+    summary: Из supportChannels в lib/data.ts удалены записи «Чат 24/7» и «База
+      знаний» — оставлена только «Email поддержка» с иконкой Mail. Удалены
+      неиспользуемые импорты MessageCircle и BookOpen. В support-section.tsx
+      сетка заменена на max-w-md с центрированием единственной карточки,
+      обновлён подзаголовок. typecheck, lint, build проходят успешно.
+  - id: task-018
+    phase: mvp
+    title: Убрать вопрос про законность VPN из FAQ
+    description: "Удалить из блока FAQ вопрос «Законно ли использовать VPN?» и
+      соответствующий ответ. Оставить 4 вопроса: замедление интернета,
+      поддерживаемые устройства, количество устройств на подписке, возврат
+      средств."
+    priority: medium
+    acceptance_criteria:
+      - Вопрос «Законно ли использовать VPN?» отсутствует в FAQ
+      - Остальные 4 вопроса работают как аккордеон
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Часто задаваемые вопросы
+    status: completed
+    summary: Из faqItems в lib/data.ts удалён элемент с id "legality" — вопрос
+      «Законно ли использовать VPN?» и соответствующий ответ. Оставшиеся 4
+      вопроса (speed, devices, multisubscription, refund) работают как
+      аккордеон. typecheck, lint, build проходят успешно.
+  - id: task-019
+    phase: mvp
+    title: Убрать кнопки в тарифах
+    description:
+      Удалить кнопки «Выбрать тариф» из карточек тарифов. Карточки должны
+      отображать только название, цену и список возможностей.
+    priority: medium
+    acceptance_criteria:
+      - Кнопки «Выбрать тариф» отсутствуют в карточках тарифов
+      - Карточки отображают цену и список возможностей
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Тарифы и подписка
+    status: completed
+    summary: Из components/pricing-section.tsx удалена кнопка «Выбрать тариф»
+      (компонент Button) и связанные импорты (Button из shadcn, ArrowRight из
+      lucide-react, toast из sonner). Карточки тарифов отображают название, цену
+      со скидкой и список возможностей. typecheck, lint, build проходят успешно.
+  - id: task-020
+    phase: mvp
+    title: Убрать вопрос про возврат средств из FAQ
+    description: "Удалить из блока FAQ вопрос «Есть ли возврат средств?» и
+      соответствующий ответ. Оставить 3 вопроса: замедление интернета,
+      поддерживаемые устройства, количество устройств на подписке."
+    priority: medium
+    acceptance_criteria:
+      - Вопрос про возврат средств отсутствует в FAQ
+      - Остальные 3 вопроса работают как аккордеон
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Часто задаваемые вопросы
+    status: completed
+    summary: Из faqItems в lib/data.ts удалён элемент с id refund — вопрос «Как
+      вернуть деньги?» и соответствующий ответ. Оставшиеся 3 вопроса (speed,
+      devices, multisubscription) работают как аккордеон. typecheck, lint, build
+      проходят успешно.
+  - id: task-021
+    phase: mvp
+    title: Убрать кнопку и описание из карточки email поддержки
+    description:
+      В секции поддержки убрать кнопку действия и текст «Сложные вопросы
+      разбираем детально» из карточки email поддержки. Оставить только иконку,
+      заголовок и email адрес.
+    priority: medium
+    acceptance_criteria:
+      - Кнопка действия отсутствует в карточке email поддержки
+      - Текст «Сложные вопросы разбираем детально» отсутствует
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Поддержка пользователей
+    status: completed
+    summary:
+      "Из карточки email поддержки удалена кнопка действия и фраза «Сложные
+      вопросы разбираем детально». В lib/data.ts: параметр action сделан
+      опциональным в интерфейсе SupportChannel, из данных supportChannels убраны
+      action и фрагмент описания. В components/support-section.tsx удалён
+      компонент Button и связанные импорты (Button, ArrowRight, toast), убран
+      отступ mb-6 у описания. typecheck, lint, build проходят успешно."
+  - id: task-022
+    phase: mvp
+    title: "Две кнопки в секции скачивания: Google Play и .apk"
+    description: "Изменить секцию скачивания: вместо одной карточки для Android
+      сделать две кнопки/карточки — «Скачать с Google Play» и «Скачать .apk».
+      Обновить данные в lib/data.ts и компонент download-section.tsx."
+    priority: high
+    acceptance_criteria:
+      - "Отображаются две кнопки: «Скачать с Google Play» и «Скачать .apк»"
+      - Каждая кнопка содержит иконку и название
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Скачать приложение
+    status: completed
+    summary:
+      "Секция скачивания изменена: вместо одной карточки Android отображаются
+      две кнопки — «Скачать с Google Play» (иконка Play) и «Скачать .apk»
+      (иконка Download). В lib/data.ts обновлён массив downloadPlatforms,
+      описание description сделано опциональным. В download-section.tsx карточки
+      упрощены до кнопок с иконкой и названием, сетка изменена на
+      sm:grid-cols-2. typecheck, lint, build проходят успешно."
+  - id: task-023
+    phase: mvp
+    title: Статья «Что такое VPN»
+    description:
+      Создать страницу /blog/chto-takoe-vpn с понятным объяснением VPN
+      для обычных пользователей. Стиль — glassmorphism, тёмная тема, бирюзовые
+      акценты.
+    priority: medium
+    acceptance_criteria:
+      - Страница открывается по URL /blog/chto-takoe-vpn
+      - Текст написан простым языком для обычных пользователей
+      - Дизайн соответствует общему стилю лендинга
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      "Создана страница /blog/chto-takoe-vpn с понятным объяснением VPN для
+      обычных пользователей. Статья разбита на 5 блоков: простое определение,
+      принцип работы, зачем нужен VPN, мифы о VPN, CTA с предложением
+      попробовать Ren VPN. Дизайн — glassmorphism, тёмная тема, бирюзовые
+      акценты. Основная реализация: app/blog/chto-takoe-vpn/page.tsx."
+  - id: task-024
+    phase: mvp
+    title: Статья «Что такое DNS»
+    description:
+      Создать страницу /blog/chto-takoe-dns с понятным объяснением DNS
+      для обычных пользователей. Стиль — glassmorphism, тёмная тема, бирюзовые
+      акценты.
+    priority: medium
+    acceptance_criteria:
+      - Страница открывается по URL /blog/chto-takoe-dns
+      - Текст написан простым языком для обычных пользователей
+      - Дизайн соответствует общему стилю лендинга
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      "Создана страница /blog/chto-takoe-dns с понятным объяснением DNS для
+      обычных пользователей. Статья разбита на 5 блоков: простое определение
+      (телефонная книга интернета), принцип работы, почему DNS важен для
+      обычного пользователя, мифы о DNS, CTA с предложением Ren VPN. Дизайн —
+      glassmorphism, тёмная тема, бирюзовые акценты. Основная реализация:
+      app/blog/chto-takoe-dns/page.tsx."
+  - id: task-025
+    phase: mvp
+    title: Статья «Раздельное туннелирование»
+    description: Создать страницу /blog/razdelnoe-tunnelfrovanie с понятным
+      объяснением раздельного туннелирования для обычных пользователей. Стиль —
+      glassmorphism, тёмная тема, бирюзовые акценты.
+    priority: medium
+    acceptance_criteria:
+      - Страница открывается по URL /blog/razdelnoe-tunnelfrovanie
+      - Текст написан простым языком для обычных пользователей
+      - Дизайн соответствует общему стилю лендинга
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      "Создана страница /blog/razdelnoe-tunnelfrovanie с понятным объяснением
+      раздельного туннелирования для обычных пользователей. Статья разбита на 5
+      блоков: простое определение (выбор пути для трафика), принцип работы
+      (разделение на два канала), зачем нужно (скорость, банки, локальные
+      устройства), мифы о раздельном туннелировании, CTA с предложением Ren VPN.
+      Дизайн — glassmorphism, тёмная тема, бирюзовые акценты. Основная
+      реализация: app/blog/razdelnoe-tunnelfrovanie/page.tsx."
+  - id: task-026
+    phase: mvp
+    title: Футер со ссылками на статьи
+    description: "Добавить футер на главную страницу со ссылками на три статьи
+      блога: «Что такое VPN», «Что такое DNS», «Раздельное туннелирование».
+      Стиль — glassmorphism."
+    priority: medium
+    acceptance_criteria:
+      - Футер отображается внизу главной страницы
+      - Ссылки ведут на /blog/chto-takoe-vpn, /blog/chto-takoe-dns,
+        /blog/razdelnoe-tunnelfrovanie
+      - Стиль соответствует общему дизайну
+    depends_on:
+      - task-023
+      - task-024
+      - task-025
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      "Добавлен футер на главную страницу со ссылками на три статьи блога:
+      «Что такое VPN» (/blog/chto-takoe-vpn), «Что такое DNS»
+      (/blog/chto-takoe-dns), «Что такое раздельное туннелирование»
+      (/blog/razdelnoe-tunnelfrovanie). Стиль — glassmorphism с иконкой BookOpen
+      и декоративными blur-элементами, соответствует общему дизайну. Основная
+      реализация: components/footer-section.tsx, app/page.tsx (подключение
+      компонента)."
+  - id: task-027
+    phase: mvp
+    title: "Две кнопки в hero-секции: Google Play и .apk"
+    description: Добавить в hero-секцию вторую кнопку «Скачать .apk» рядом с
+      существующей кнопкой «Скачать с Google Play». Обе кнопки должны быть в
+      одном стиле.
+    priority: high
+    acceptance_criteria:
+      - "В hero-секции отображаются две кнопки: «Скачать с Google Play» и
+        «Скачать .apk»"
+      - Обе кнопки выполнены в едином стиле
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      "В hero-секцию добавлена вторая кнопка «Скачать .apk» рядом с «Скачать
+      с Google Play». Обе кнопки одного размера (size=lg, h-12 px-8), используют
+      одинаковые классы стилей. Для .apk используется иконка FileDown, для
+      Google Play — Download. Основная реализация: components/hero-section.tsx."
+  - id: task-028
+    phase: mvp
+    title: Обновить ссылку на Google Play
+    description: "Заменить все ссылки «Скачать с Google Play» на актуальную:
+      https://play.google.com/store/apps/details?id=com.rg.nomadvpn. Обновить в
+      hero-секции и секции скачивания."
+    priority: high
+    acceptance_criteria:
+      - Кнопка «Скачать с Google Play» ведёт на
+        https://play.google.com/store/apps/details?id=com.rg.nomadvpn
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Обновлены все ссылки «Скачать с Google Play» на актуальную:
+      https://play.google.com/store/apps/details?id=com.rg.nomadvpn. Изменения
+      внесены в components/hero-section.tsx (замена Button на <a> с
+      buttonVariants), components/download-section.tsx (замена карточки Google
+      Play на ссылку), app/blog/chto-takoe-vpn/page.tsx,
+      app/blog/chto-takoe-dns/page.tsx,
+      app/blog/razdelnoe-tunnelfrovanie/page.tsx. typecheck, lint, build
+      проходят без ошибок."
+  - id: task-029
+    phase: mvp
+    title: Обновить иконку приложения
+    description: "Заменить иконку/логотип приложения на кастомную: фон #0fd6b5
+      (бирюзовый) и внутри буква R белого цвета. Обновить во всех местах, где
+      отображается логотип (layout.tsx, hero-секция, футер, статьи блога)."
+    priority: high
+    acceptance_criteria:
+      - "Иконка приложения отображается с фоном #0fd6b5 и буквой R"
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      "Создан компонент components/app-logo.tsx с SVG-иконкой: фон #0fd6b5,
+      буква R белого цвета. Иконка заменена в layout.tsx (хедер) — вместо
+      Sparkles из lucide-react используется AppLogo. Другие секции (hero-секция,
+      футер, статьи блога) не содержали визуального логотипа, только текстовые
+      упоминания Ren VPN, поэтому не требовали изменений. Typecheck, lint, build
+      проходят без ошибок."
+  - id: task-030
+    phase: mvp
+    title: Увеличить букву R в иконке и растянуть надпись Ren VPN
+    description:
+      В компоненте app-logo.tsx увеличить размер буквы R внутри иконки. В
+      layout.tsx и других местах сделать надпись «Ren VPN» более
+      широкой/растянутой (tracking-wider или аналогично).
+    priority: medium
+    acceptance_criteria:
+      - Буква R в иконке стала крупнее
+      - Надпись Ren VPN выглядит более растянутой по ширине
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "В app-logo.tsx fontSize буквы R увеличен с 18 до 24. В layout.tsx
+      надпись Ren VPN растянута: tracking-tight заменён на tracking-wider в
+      хедере, добавлен tracking-wide в футер. typecheck, lint, build проходят
+      успешно."
+  - id: task-031
+    phase: mvp
+    title: Надпись Ren VPN в одну строку рядом с иконкой
+    description: Исправить отображение названия Ren VPN рядом с иконкой в хедере
+      (layout.tsx) и футере — чтобы было в одну строку, а не переносилось на
+      две.
+    priority: medium
+    acceptance_criteria:
+      - Надпись Ren VPN отображается в одну строку рядом с иконкой
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: В layout.tsx добавлен whitespace-nowrap в класс хедера (Link с
+      логотипом) и футера (span вокруг appName), чтобы надпись Ren VPN не
+      переносилась на две строки рядом с иконкой. typecheck, lint, build
+      проходят успешно.
+  - id: task-032
+    phase: mvp
+    title: Две кнопки скачивания в CTA-блоке статей
+    description: "В статьях блога (/blog/chto-takoe-vpn, /blog/chto-takoe-dns,
+      /blog/razdelnoe-tunnelfrovanie) в блоке «Попробуйте Ren VPN прямо сейчас»
+      заменить одну кнопку на две: «Скачать с Google Play» и «Скачать .apk»."
+    priority: medium
+    acceptance_criteria:
+      - "В CTA-блоке каждой статьи отображаются две кнопки: «Скачать с Google
+        Play» и «Скачать .apk»"
+      - Страницы статей загружаются без ошибок
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary: В CTA-блоке трёх статей блога (/blog/chto-takoe-vpn,
+      /blog/chto-takoe-dns, /blog/razdelnoe-tunnelfrovanie) кнопка «Узнать
+      больше» заменена на «Скачать .apk» с иконкой FileDown. Основная реализация
+      — в app/blog/chto-takoe-vpn/page.tsx, app/blog/chto-takoe-dns/page.tsx,
+      app/blog/razdelnoe-tunnelfrovanie/page.tsx.
+  - id: task-033
+    phase: mvp
+    title: "Обновить футер: ссылки на статьи и политика конфиденциальности"
+    description:
+      "Обновить футер на главной странице: оставить ссылки на три статьи
+      блога (Что такое VPN, Что такое DNS, Раздельное туннелирование) и добавить
+      ссылку на страницу политики конфиденциальности (/privacy). Стиль —
+      glassmorphism."
+    priority: medium
+    acceptance_criteria:
+      - В футере отображаются ссылки на три статьи блога
+      - В футере отображается ссылка «Политика конфиденциальности»
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      "В футер (components/footer-section.tsx) добавлена ссылка на страницу
+      /privacy с иконкой Shield и glassmorphism-стилем. Создана страница политики
+      конфиденциальности (app/privacy/page.tsx) из 7 разделов в едином стиле
+      glassmorphism с CTA-блоком. typecheck, lint, build проходят успешно."
