@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
-  Smartphone,
   Zap,
   Split,
   Router,
@@ -16,16 +15,49 @@ import {
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
+import { GooglePlayIcon } from "@/components/ui/google-play-icon";
 
 export const metadata: Metadata = {
   title: "Что такое раздельное туннелирование? Простыми словами | Ren VPN",
   description:
     "Узнайте, что такое раздельное туннелирование в VPN, как оно работает и зачем оно нужно. Простое и понятное объяснение для обычных пользователей.",
+  openGraph: {
+    title: "Что такое раздельное туннелирование? Простыми словами | Ren VPN",
+    description:
+      "Раздельное туннелирование — это выбор, какие приложения работают через VPN, а какие — напрямую. Узнайте, как это работает и зачем нужно.",
+  },
 };
 
 export default function RazdelnoeTunnelfrovaniePage() {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Что такое раздельное туннелирование? Простыми словами",
+    description:
+      "Простое и понятное объяснение раздельного туннелирования в VPN: как работает, зачем нужно, распространённые мифы.",
+    author: {
+      "@type": "Organization",
+      name: "Ren VPN",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Ren VPN",
+    },
+    datePublished: "2024-02-01",
+    dateModified: "2024-02-01",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://renvpn.com/blog/razdelnoe-tunnelfrovanie",
+    },
+  };
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden px-4 py-20 sm:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
@@ -260,7 +292,7 @@ export default function RazdelnoeTunnelfrovaniePage() {
                   "h-12 px-8 text-base gap-2"
                 )}
               >
-                <Smartphone className="h-4 w-4" />
+                <GooglePlayIcon className="h-4 w-4" />
                 Скачать с Google Play
               </a>
               <Button

@@ -8,7 +8,6 @@ import {
   Shield,
   Zap,
   ArrowLeft,
-  Smartphone,
   Server,
   Share2,
   FileDown,
@@ -16,16 +15,49 @@ import {
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
+import { GooglePlayIcon } from "@/components/ui/google-play-icon";
 
 export const metadata: Metadata = {
   title: "Что такое DNS? Простыми словами | Ren VPN",
   description:
     "Узнайте, что такое DNS, как он работает и зачем он нужен. Простое и понятное объяснение для обычных пользователей.",
+  openGraph: {
+    title: "Что такое DNS? Простыми словами | Ren VPN",
+    description:
+      "DNS — это телефонная книга интернета. Узнайте, как работает DNS, почему он важен и разберитесь в распространённых мифах.",
+  },
 };
 
 export default function ChtoTakoeDnsPage() {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Что такое DNS? Простыми словами",
+    description:
+      "Простое и понятное объяснение DNS для обычных пользователей: как работает, зачем нужен, почему это важно.",
+    author: {
+      "@type": "Organization",
+      name: "Ren VPN",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Ren VPN",
+    },
+    datePublished: "2024-01-15",
+    dateModified: "2024-01-15",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://renvpn.com/blog/chto-takoe-dns",
+    },
+  };
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden px-4 py-20 sm:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
@@ -259,7 +291,7 @@ export default function ChtoTakoeDnsPage() {
                   "h-12 px-8 text-base gap-2"
                 )}
               >
-                <Smartphone className="h-4 w-4" />
+                <GooglePlayIcon className="h-4 w-4" />
                 Скачать с Google Play
               </a>
               <Button

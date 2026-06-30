@@ -59,6 +59,11 @@ export function FooterSection() {
             <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
           </Link>
         </div>
+
+        <div className="mx-auto mt-8 max-w-lg text-center text-xs tracking-wide text-muted-foreground">
+          © {new Date().getFullYear()}{" "}
+          <span className="whitespace-nowrap">Ren VPN</span>
+        </div>
       </div>
     </section>
   );

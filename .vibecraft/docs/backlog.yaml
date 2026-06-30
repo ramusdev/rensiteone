@@ -698,7 +698,294 @@ tasks:
     related_feature: Блог / SEO-статьи
     status: completed
     summary:
-      "В футер (components/footer-section.tsx) добавлена ссылка на страницу
-      /privacy с иконкой Shield и glassmorphism-стилем. Создана страница политики
-      конфиденциальности (app/privacy/page.tsx) из 7 разделов в едином стиле
-      glassmorphism с CTA-блоком. typecheck, lint, build проходят успешно."
+      В футер (components/footer-section.tsx) добавлена ссылка на страницу
+      /privacy с иконкой Shield и glassmorphism-стилем. Создана страница
+      политики конфиденциальности (app/privacy/page.tsx) из 7 разделов в едином
+      стиле glassmorphism с CTA-блоком. typecheck, lint, build проходят успешно.
+  - id: task-034
+    phase: mvp
+    title: CTA-блок на странице политики конфиденциальности
+    description: "Добавить на страницу /privacy блок «Попробуйте Ren VPN прямо
+      сейчас» с двумя кнопками: «Скачать с Google Play» и «Скачать .apk». Стиль
+      — glassmorphism, как в статьях блога."
+    priority: medium
+    acceptance_criteria:
+      - На странице /privacy отображается CTA-блок с двумя кнопками скачивания
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      "CTA-блок «Попробуйте Ren VPN прямо сейчас» с двумя кнопками («Скачать
+      с Google Play» и «Скачать .apk») в стиле glassmorphism уже присутствует на
+      странице /privacy. Основная реализация: app/privacy/page.tsx (строки
+      241–272). typecheck, lint, build проходят успешно."
+  - id: task-035
+    phase: mvp
+    title: CTA-блок на главной странице
+    description:
+      "Добавить на главную страницу (app/page.tsx) блок «Попробуйте Ren
+      VPN прямо сейчас» с двумя кнопками: «Скачать с Google Play» и «Скачать
+      .apk». Разместить перед футером. Стиль — glassmorphism, как в статьях
+      блога."
+    priority: medium
+    acceptance_criteria:
+      - На главной странице отображается CTA-блок с двумя кнопками скачивания
+      - Блок расположен перед футером
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      "Добавлен CTA-блок «Попробуйте Ren VPN прямо сейчас» с двумя кнопками:
+      «Скачать с Google Play» (ссылка на Google Play) и «Скачать .apk» (кнопка
+      outline). Размещён перед FooterSection. Стиль — glassmorphism:
+      backdrop-blur-xl, border-primary/20, bg-primary/[0.03], декоративные
+      blur-элементы. Основная реализация: components/cta-section.tsx,
+      app/page.tsx (подключение компонента)."
+  - id: task-036
+    phase: mvp
+    title: Добавить ссылки на статьи и политику в футер
+    description:
+      В компоненте footer-section.tsx добавить ссылки на три статьи блога
+      (/blog/chto-takoe-vpn, /blog/chto-takoe-dns,
+      /blog/razdelnoe-tunnelfrovanie) и на страницу политики конфиденциальности
+      (/privacy). Оставить копирайт. Стиль — glassmorphism.
+    priority: medium
+    acceptance_criteria:
+      - В футере отображаются ссылки на три статьи блога
+      - В футере отображается ссылка «Политика конфиденциальности»
+      - Копирайт сохранён
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Блог / SEO-статьи
+    status: completed
+    summary:
+      В components/footer-section.tsx добавлен копирайт © {year} Ren VPN под
+      ссылками на статьи и политику конфиденциальности. Ссылки на три статьи
+      блога (/blog/chto-takoe-vpn, /blog/chto-takoe-dns,
+      /blog/razdelnoe-tunnelfrovanie) и страницу политики (/privacy) уже
+      присутствовали из предыдущих задач. Дублирующийся футер с копирайтом убран
+      из app/layout.tsx. Стиль — glassmorphism. typecheck, lint, build проходят
+      успешно.
+  - id: task-037
+    phase: mvp
+    title: Починить отображение иконки приложения
+    description: В layout.tsx у компонента AppLogo нет явного размера — добавить
+      className="h-7 w-7", чтобы иконка отображалась в хедере.
+    priority: high
+    acceptance_criteria:
+      - "Иконка приложения (фон #0fd6b5, буква R) отображается в хедере"
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      Добавлен className="h-7 w-7" к компоненту AppLogo в app/layout.tsx:36.
+      Иконка (SVG с фоном
+  - id: task-038
+    phase: mvp
+    title: Поправить центрирование буквы R в иконке
+    description: В компоненте app-logo.tsx исправить позицию буквы R внутри SVG,
+      чтобы она была точно по центру (по вертикали и горизонтали).
+    priority: high
+    acceptance_criteria:
+      - Буква R отображается по центру иконки
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      "В components/app-logo.tsx исправлено центрирование буквы R внутри SVG:
+      значение y поднято с 22.5 до 24.5, чтобы скомпенсировать увеличение
+      fontSize с 18 до 24 (task-030). Ранее центр буквы находился на 14.1 вместо
+      16, теперь совпадает с центром viewBox 32x32. typecheck, lint, build
+      проходят успешно."
+  - id: task-039
+    phase: mvp
+    title: SEO-оптимизация
+    description: >-
+      Добавить SEO-оптимизацию для всего сайта:
+
+      1. Мета-теги и Open Graph на всех страницах (главная, /privacy, /blog/*)
+
+      2. Sitemap.xml со всеми страницами
+
+      3. Robots.txt
+
+      4. Структурированные данные Schema.org (Organization на главной, FAQ на
+      странице FAQ, Article на страницах статей)
+    priority: medium
+    acceptance_criteria:
+      - Каждая страница имеет уникальные meta title и description
+      - Open Graph-теги присутствуют на всех страницах
+      - Sitemap.xml содержит все страницы сайта
+      - Robots.txt разрешает индексацию
+      - Структурированные данные Schema.org присутствуют на главной, FAQ и
+        страницах статей
+      - Страницы загружаются без ошибок
+    depends_on: []
+    related_feature: SEO-оптимизация
+    status: completed
+    summary:
+      "Добавлена SEO-оптимизация: уникальные meta title/description и Open
+      Graph (og:title, og:description, og:image) на всех страницах (главная,
+      /privacy, /blog/*); sitemap.xml со всеми маршрутами; robots.txt с
+      разрешением индексации; Schema.org Organization + FAQ на главной, Article
+      на страницах статей блога. Созданы public/og-image.svg и
+      public/favicon.svg. Основная реализация: app/layout.tsx (metadata с
+      metadataBase, Open Graph, Twitter Card), app/page.tsx (Organization + FAQ
+      JSON-LD), app/blog/*/page.tsx (Article JSON-LD), app/sitemap.ts,
+      app/robots.ts."
+  - id: task-040
+    phase: mvp
+    title: Единая иконка Google Play на всех кнопках
+    description: "Заменить иконки на кнопках «Скачать с Google Play» на единый
+      логотип Google Play (SVG-треугольник) во всех местах: hero-секция, секция
+      скачивания, CTA-блок на главной, CTA-блоки в статьях блога, CTA-блок на
+      странице политики конфиденциальности."
+    priority: medium
+    acceptance_criteria:
+      - На всех кнопках «Скачать с Google Play» используется одинаковая иконка
+        (логотип Google Play)
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Создан общий компонент `components/ui/google-play-icon.tsx` с
+      SVG-логотипом Google Play. Иконка заменена во всех CTA-блоках:
+      hero-section, cta-section, 3 статьи блога и страница политики
+      конфиденциальности — везде используется единый GooglePlayIcon вместо
+      Smartphone/Download. download-section.tsx уже имел корректную SVG-иконку и
+      не требовал изменений. typecheck, lint, build — успешно."
+  - id: task-041
+    phase: mvp
+    title: Обновить описание промо-тарифа на 3 дня
+    description:
+      "В секции тарифов изменить описание тарифа за 1 руб: указать, что
+      это промо на 3 дня. Обновить данные в lib/data.ts (название, описание) и
+      компонент pricing-section.tsx."
+    priority: medium
+    acceptance_criteria:
+      - Тариф за 1 руб отображается как промо на 3 дня
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Тарифы и подписка
+    status: completed
+    summary: "Тариф за 1 руб обновлён на промо 3 дня: в lib/data.ts изменены
+      durationLabel с «1 месяц» на «3 дня», periodLabel на «3 дня», description
+      на «Промо-доступ на 3 дня», добавлен promo: true. В
+      components/pricing-section.tsx добавлен бейдж «Промо» для промо-тарифа.
+      Typecheck, lint, build проходят успешно."
+  - id: task-042
+    phase: mvp
+    title: Изменить тариф 199 руб на 1 месяц
+    description:
+      "В секции тарифов изменить тариф за 199 руб: вместо «12 месяцев»
+      указать «1 месяц». Обновить данные в lib/data.ts (durationLabel,
+      periodLabel) и компонент pricing-section.tsx."
+    priority: medium
+    acceptance_criteria:
+      - Тариф за 199 руб отображается как «1 месяц»
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Тарифы и подписка
+    status: completed
+    summary:
+      "В тарифе за 199 руб (annual) в lib/data.ts изменены: duration с «12»
+      на «1», durationLabel с «12 месяцев» на «1 месяц», periodLabel с «в месяц»
+      на «месяц». Компонент pricing-section.tsx не потребовал изменений, так как
+      динамически использует plan.durationLabel и plan.periodLabel. typecheck,
+      lint, build проходят успешно."
+  - id: task-043
+    phase: mvp
+    title: В FAQ в вопросе про устройства оставить только Android
+    description:
+      В блоке FAQ в вопросе «Какие устройства поддерживаются?» изменить
+      ответ — указать только Android. Обновить данные в lib/data.ts.
+    priority: medium
+    acceptance_criteria:
+      - В FAQ в ответе про устройства указан только Android
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Часто задаваемые вопросы
+    status: completed
+    summary: "В faqItems в lib/data.ts изменён ответ на вопрос «Какие устройства
+      поддерживаются?» (id: devices): указан только Android. typecheck, lint,
+      build проходят успешно."
+  - id: task-044
+    phase: mvp
+    title: Убрать упоминания других платформ в возможностях и FAQ
+    description: "В lib/data.ts: 1) В appInfo.highlights изменить пункт «Все
+      платформы» — описание «Работает на iOS, Android, Windows, MacOS» заменить
+      на «Работает на Android». 2) В faqItems в ответе на вопрос про количество
+      устройств обновить упоминания тарифов на актуальные (3 дня и 1 месяц)."
+    priority: medium
+    acceptance_criteria:
+      - В блоке возможностей нет упоминаний iOS, Windows, MacOS
+      - В FAQ ответ про устройства актуален
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "В lib/data.ts: описание «Все платформы» изменено на «Работает на
+      Android» (убраны iOS, Windows, MacOS). В FAQ про количество устройств
+      тарифы обновлены на актуальные (3 дня и 1 месяц). typecheck, lint, build
+      проходят."
+  - id: task-045
+    phase: mvp
+    title: Секция карты серверов со списком стран
+    description: "Добавить на главную страницу секцию с карточками стран по
+      регионам: европейские страны (20+), США, Турция. Каждая карточка с флагом
+      (эмодзи) и названием страны. Стиль — glassmorphism."
+    priority: medium
+    acceptance_criteria:
+      - Отображаются карточки стран по регионам (Европа, США, Турция)
+      - У каждой страны указан флаг и название
+      - Стиль glassmorphism
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Карта серверов
+    status: completed
+    summary: "Добавлена секция «Карта серверов» с карточками стран по регионам:
+      Европа (24 страны с флагами), Северная Америка (США), Евразия (Турция).
+      Каждая карточка содержит флаг-эмодзи и название страны. Стиль —
+      glassmorphism (backdrop-blur, border-white/10, bg-white/5) с декоративными
+      blur-элементами. Основная реализация: components/servers-section.tsx,
+      lib/data.ts (типы ServerCountry, ServerRegion + данные serverRegions),
+      app/page.tsx (подключение компонента)."
+  - id: task-046
+    phase: mvp
+    title: Добавить логотип Ren VPN в hero-секцию
+    description:
+      В hero-секцию (components/hero-section.tsx) добавить логотип Ren
+      VPN (иконка AppLogo + надпись Ren VPN) над заголовком. Стиль —
+      glassmorphism, бирюзовые акценты.
+    priority: medium
+    acceptance_criteria:
+      - Логотип Ren VPN отображается над заголовком в hero-секции
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary:
+      "В components/hero-section.tsx добавлен логотип Ren VPN над заголовком:
+      glassmorphism-контейнер (border-primary/20, bg-primary/[0.04],
+      backdrop-blur-xl, rounded-2xl) с иконкой AppLogo (h-8 w-8) и текстом «Ren
+      VPN» (text-primary, tracking-wide) перед h1. typecheck, lint, build — без
+      ошибок."
+  - id: task-047
+    phase: mvp
+    title: Проверка и подготовка к публикации
+    description:
+      Запустить typecheck, lint и build для проверки, что сайт готов к
+      публикации. Исправить все ошибки.
+    priority: high
+    acceptance_criteria:
+      - npm run typecheck проходит без ошибок
+      - npm run lint проходит без ошибок
+      - npm run build проходит без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "Проверка и подготовка к публикации успешно завершена. npm run typecheck, npm run lint и npm run build прошли без ошибок. Все команды выполнены на хосте, проект готов к публикации."

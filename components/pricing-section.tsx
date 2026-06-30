@@ -37,6 +37,13 @@ export function PricingSection() {
                   </Badge>
                 </div>
               )}
+              {plan.promo && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <Badge variant="secondary" className="px-4 py-1 text-xs">
+                    Промо
+                  </Badge>
+                </div>
+              )}
 
               <div className="mb-6">
                 <h3 className="text-xl font-semibold mb-1">

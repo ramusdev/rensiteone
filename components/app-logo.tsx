@@ -9,7 +9,7 @@ export function AppLogo({ className }: { className?: string }) {
       <rect width="32" height="32" rx="8" fill="#0fd6b5" />
       <text
         x="16"
-        y="22.5"
+        y="24.5"
         textAnchor="middle"
         fill="white"
         fontSize="24"

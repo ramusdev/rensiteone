@@ -1,14 +1,20 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Shield, ArrowLeft, FileDown, Smartphone } from "lucide-react";
+import { Shield, ArrowLeft, FileDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
+import { GooglePlayIcon } from "@/components/ui/google-play-icon";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности | Ren VPN",
   description:
     "Политика конфиденциальности Ren VPN. Узнайте, как мы защищаем ваши данные и обеспечиваем приватность.",
+  openGraph: {
+    title: "Политика конфиденциальности | Ren VPN",
+    description:
+      "Политика конфиденциальности Ren VPN. Мы серьёзно относимся к вашей приватности — no-logs политика, шифрование и защита данных.",
+  },
 };
 
 export default function PrivacyPage() {
@@ -257,7 +263,7 @@ export default function PrivacyPage() {
                   "h-12 px-8 text-base gap-2"
                 )}
               >
-                <Smartphone className="h-4 w-4" />
+                <GooglePlayIcon className="h-4 w-4" />
                 Скачать с Google Play
               </a>
               <Button

@@ -7,22 +7,54 @@ import {
   Eye,
   Zap,
   ArrowLeft,
-  Smartphone,
   FileDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
+import { GooglePlayIcon } from "@/components/ui/google-play-icon";
 
 export const metadata: Metadata = {
   title: "Что такое VPN? Простыми словами | Ren VPN",
   description:
     "Узнайте, что такое VPN, как он работает и зачем он нужен. Простое и понятное объяснение для обычных пользователей.",
+  openGraph: {
+    title: "Что такое VPN? Простыми словами | Ren VPN",
+    description:
+      "VPN — это как секретный туннель для вашего интернета. Узнайте, как работает VPN, зачем он нужен и разберитесь в распространённых мифах.",
+  },
 };
 
 export default function ChtoTakoeVpnPage() {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Что такое VPN? Простыми словами",
+    description:
+      "Простое и понятное объяснение VPN для обычных пользователей: как работает, зачем нужен, распространённые мифы.",
+    author: {
+      "@type": "Organization",
+      name: "Ren VPN",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Ren VPN",
+    },
+    datePublished: "2024-01-01",
+    dateModified: "2024-01-01",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://renvpn.com/blog/chto-takoe-vpn",
+    },
+  };
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden px-4 py-20 sm:py-28">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
@@ -254,7 +286,7 @@ export default function ChtoTakoeVpnPage() {
                   "h-12 px-8 text-base gap-2"
                 )}
               >
-                <Smartphone className="h-4 w-4" />
+                <GooglePlayIcon className="h-4 w-4" />
                 Скачать с Google Play
               </a>
               <Button

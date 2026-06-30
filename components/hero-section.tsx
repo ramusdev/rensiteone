@@ -2,7 +2,9 @@ import { appInfo } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
-import { Download, FileDown } from "lucide-react";
+import { GooglePlayIcon } from "@/components/ui/google-play-icon";
+import { FileDown } from "lucide-react";
+import { AppLogo } from "@/components/app-logo";
 
 export function HeroSection() {
   return (
@@ -13,6 +15,12 @@ export function HeroSection() {
       <div className="relative mx-auto max-w-3xl text-center">
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 space-y-8">
           <div className="space-y-4">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-2xl border border-primary/20 bg-primary/[0.04] backdrop-blur-xl px-5 py-2.5 shadow-xl">
+              <AppLogo className="h-8 w-8" />
+              <span className="text-lg font-semibold tracking-wide text-primary">
+                Ren VPN
+              </span>
+            </div>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text">
               {appInfo.tagline}
             </h1>
@@ -30,7 +38,7 @@ export function HeroSection() {
                 "h-12 px-8 text-base gap-2"
               )}
             >
-              <Download className="h-4 w-4" />
+              <GooglePlayIcon className="h-4 w-4" />
               Скачать с Google Play
             </a>
             <Button size="lg" className="h-12 px-8 text-base gap-2">

@@ -47,6 +47,7 @@ export interface PricingPlan {
   features: string[];
   recommended?: boolean;
   discount?: string;
+  promo?: boolean;
 }
 
 export interface SocialProof {
@@ -92,7 +93,7 @@ export const appInfo: AppInfo = {
     {
       icon: Smartphone,
       title: "Все платформы",
-      description: "Работает на iOS, Android, Windows, MacOS",
+      description: "Работает на Android",
     },
   ],
 };
@@ -185,11 +186,11 @@ export const supportChannels: SupportChannel[] = [
 export const pricingPlans: PricingPlan[] = [
   {
     id: "monthly",
-    duration: "1",
-    durationLabel: "1 месяц",
+    duration: "3",
+    durationLabel: "3 дня",
     price: 1,
-    periodLabel: "месяц",
-    description: "Для тех, кто хочет попробовать",
+    periodLabel: "3 дня",
+    description: "Промо-доступ на 3 дня",
     features: [
       "AES-256 шифрование",
       "Без логирования данных",
@@ -198,14 +199,15 @@ export const pricingPlans: PricingPlan[] = [
       "До 5 устройств",
       "30 дней возврата",
     ],
+    promo: true,
   },
   {
     id: "annual",
-    duration: "12",
-    durationLabel: "12 месяцев",
+    duration: "1",
+    durationLabel: "1 месяц",
     price: 199,
     originalPrice: 499,
-    periodLabel: "в месяц",
+    periodLabel: "месяц",
     description: "Максимальная выгода",
     features: [
       "AES-256 шифрование",
@@ -239,12 +241,67 @@ export const faqItems: FaqItem[] = [
     id: "devices",
     question: "Какие устройства поддерживаются?",
     answer:
-      "Ren VPN поддерживает все основные платформы: Windows, macOS, iOS, Android, Linux. Также доступны расширения для браузеров Chrome и Firefox. Вы можете установить приложение на все свои устройства и использовать одну подписку на всех.",
+      "Ren VPN поддерживает устройства на Android. Вы можете установить приложение на свой смартфон или планшет и пользоваться одной подпиской.",
   },
   {
     id: "multisubscription",
     question: "Сколько устройств можно подключить?",
     answer:
-      "Количество устройств зависит от выбранного тарифа: до 5 устройств на тарифе «1 месяц», до 10 устройств на тарифе «6 месяцев» и до 15 устройств на тарифе «12 месяцев». Все устройства работают одновременно — никаких ограничений по количеству подключений.",
+      "Количество устройств зависит от выбранного тарифа: до 5 устройств на тарифе «3 дня», до 15 устройств на тарифе «1 месяц». Все устройства работают одновременно — никаких ограничений по количеству подключений.",
+  },
+];
+
+export interface ServerCountry {
+  flag: string;
+  name: string;
+  city?: string;
+}
+
+export interface ServerRegion {
+  id: string;
+  name: string;
+  countries: ServerCountry[];
+}
+
+export const serverRegions: ServerRegion[] = [
+  {
+    id: "europe",
+    name: "Европа",
+    countries: [
+      { flag: "🇩🇪", name: "Германия" },
+      { flag: "🇫🇷", name: "Франция" },
+      { flag: "🇬🇧", name: "Великобритания" },
+      { flag: "🇳🇱", name: "Нидерланды" },
+      { flag: "🇸🇪", name: "Швеция" },
+      { flag: "🇳🇴", name: "Норвегия" },
+      { flag: "🇩🇰", name: "Дания" },
+      { flag: "🇫🇮", name: "Финляндия" },
+      { flag: "🇪🇸", name: "Испания" },
+      { flag: "🇮🇹", name: "Италия" },
+      { flag: "🇨🇭", name: "Швейцария" },
+      { flag: "🇦🇹", name: "Австрия" },
+      { flag: "🇧🇪", name: "Бельгия" },
+      { flag: "🇮🇪", name: "Ирландия" },
+      { flag: "🇵🇹", name: "Португалия" },
+      { flag: "🇵🇱", name: "Польша" },
+      { flag: "🇨🇿", name: "Чехия" },
+      { flag: "🇬🇷", name: "Греция" },
+      { flag: "🇷🇴", name: "Румыния" },
+      { flag: "🇭🇺", name: "Венгрия" },
+      { flag: "🇧🇬", name: "Болгария" },
+      { flag: "🇭🇷", name: "Хорватия" },
+      { flag: "🇱🇹", name: "Литва" },
+      { flag: "🇱🇺", name: "Люксембург" },
+    ],
+  },
+  {
+    id: "north-america",
+    name: "Северная Америка",
+    countries: [{ flag: "🇺🇸", name: "США" }],
+  },
+  {
+    id: "eurasia",
+    name: "Евразия",
+    countries: [{ flag: "🇹🇷", name: "Турция" }],
   },
 ];

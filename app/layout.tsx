@@ -11,9 +11,39 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const appName = "Ren VPN";
 
+const siteUrl = process.env.SITE_URL ?? "https://renvpn.com";
+
 export const metadata: Metadata = {
-  title: appName,
-  description: appName,
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: appName,
+    template: `%s | ${appName}`,
+  },
+  description:
+    "Ren VPN — безопасный VPN-сервис с шифрованием AES-256, без логирования и с высокой скоростью. Защитите свою приватность в один клик.",
+  openGraph: {
+    siteName: appName,
+    locale: "ru_RU",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: appName,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: appName,
+    description:
+      "Ren VPN — безопасный VPN-сервис с шифрованием AES-256, без логирования и с высокой скоростью.",
+    images: ["/og-image.svg"],
+  },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -31,18 +61,13 @@ export default function RootLayout({
               href="/"
               className="flex items-center gap-2 text-lg font-semibold tracking-wider whitespace-nowrap"
             >
-              <AppLogo />
+              <AppLogo className="h-7 w-7" />
               {appName}
             </Link>
           </div>
         </header>
         <main className="flex-1">{children}</main>
-        <footer className="border-t">
-          <div className="container mx-auto px-4 py-6 text-center text-xs tracking-wide text-muted-foreground">
-            © {new Date().getFullYear()}{" "}
-            <span className="whitespace-nowrap">{appName}</span>
-          </div>
-        </footer>
+
         <Toaster richColors position="top-right" />
       </body>
     </html>
