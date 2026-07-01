@@ -988,4 +988,22 @@ tasks:
     depends_on: []
     related_feature: Обзор возможностей
     status: completed
-    summary: "Проверка и подготовка к публикации успешно завершена. npm run typecheck, npm run lint и npm run build прошли без ошибок. Все команды выполнены на хосте, проект готов к публикации."
+    summary: Проверка и подготовка к публикации успешно завершена. npm run
+      typecheck, npm run lint и npm run build прошли без ошибок. Все команды
+      выполнены на хосте, проект готов к публикации.
+  - id: task-048
+    phase: mvp
+    title: Адаптация кнопок в hero-секции для мобильных
+    description:
+      "В hero-секции (components/hero-section.tsx) изменить расположение
+      кнопок: на мобильных устройствах кнопки должны быть одна под другой
+      (flex-col), на десктопе — рядом (flex-row)."
+    priority: high
+    acceptance_criteria:
+      - На мобильных кнопки отображаются вертикально и помещаются в экран
+      - На десктопе кнопки отображаются горизонтально рядом
+      - Страница загружается без ошибок
+    depends_on: []
+    related_feature: Обзор возможностей
+    status: completed
+    summary: "В components/hero-section.tsx изменён flex-контейнер кнопок: добавлены flex-col sm:flex-row — на мобильных кнопки располагаются вертикально (flex-col), на sm и выше — горизонтально рядом (flex-row). typecheck, lint, build проходят успешно."

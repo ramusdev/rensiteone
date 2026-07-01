@@ -28,7 +28,7 @@ export function HeroSection() {
               {appInfo.description}
             </p>
           </div>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://play.google.com/store/apps/details?id=com.rg.nomadvpn"
               target="_blank"
